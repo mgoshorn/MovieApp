@@ -47,12 +47,12 @@ public class MovieController {
 	}
 	
 	@PutMapping("")
-	public Movie updateActor(@RequestBody Movie movie) {
+	public Movie updateMovie(@RequestBody Movie movie) {
 		return movieService.update(movie);
 	}
 	
-	@GetMapping("{id}/movies")
-	public List<Actor> getActorsByMovie(int id) {
+	@GetMapping("{id}/actors")
+	public List<Actor> getActorsByMovie(@PathVariable int id) {
 		return movieService.getActorsByMovie(id);
 	}
 	

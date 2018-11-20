@@ -49,7 +49,7 @@ public class ActorController {
 	}
 	
 	@GetMapping("{id}/movies")
-	public List<Movie> getMoviesByActor(int id) {
+	public List<Movie> getMoviesByActor(@PathVariable int id) {
 		return actorService.getMoviesByActor(id);
 	}
 	
