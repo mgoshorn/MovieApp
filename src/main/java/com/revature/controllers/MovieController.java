@@ -36,9 +36,25 @@ public class MovieController {
 		return this.movieService.saveMovie(movie);
 	}
 	
-	@GetMapping("{id}")
+	@GetMapping(path="{id}", produces="application/json")
 	public Movie getMovie(@PathVariable int id) {
 		return this.movieService.getMovieById(id);
+	}
+	
+	@GetMapping(path="{id}", produces="text/html")
+	public String getMovieHTML(@PathVariable int id) {
+		Movie movie = this.movieService.getMovieById(id);
+		String Html = "<html><head><title>"+movie.getName()+
+				"</title></head><body><h1>"+movie.getName()+
+				"</h1><h3>Released: " + movie.getReleaseDate() +
+				"</h3><h2>Starring</h2><ol>";
+		
+		for(Actor actor : movie.getActors()) {
+			Html += "<li>" + actor.getFirstName() + " " + actor.getLastName() + "</li>";
+		}
+		Html += "</ol></body></html>";
+		
+		return Html;
 	}
 	
 	@GetMapping("")
